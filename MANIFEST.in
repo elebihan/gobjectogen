@@ -1,4 +1,4 @@
 include AUTHORS
-include README
+include README.rst
 include COPYING
 recursive-include data *
