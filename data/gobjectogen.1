@@ -1,0 +1,85 @@
+.TH gobjectogen 1
+
+.SH NAME
+gobjectogen \- generates source code for programs using GObject type system.
+
+.SH SYNOPSIS
+.B gobjectogen [\fIOPTIONS\fP] \fI<NAME>\fP
+
+.SH DESCRIPTION
+.P
+\fBgobjectogen\fP generates source code for programs using the GObject type
+system, such as classes and interfaces. It produces one file for the C code and
+one for the header file. The \fINAME\fP of the entity to be generated must be
+written in camel case: for example FooLoader.
+
+.P
+By default, the program generates a subclass of GObject. The parent class can
+be set using the \fB--parent\fP option. If \fB--abstract\fP is used, an
+abstract class will be generated. If \fB--interface\fP is used, an
+interface will be generated (an interface is an non-instanciable classed type).
+
+.P
+Other command line options are available to include the default property getter
+and setter, as well as private members or implemented interface.
+
+.SH OPTIONS
+.TP
+\-O DIRECTORY, --output DIRECTORY
+set output directory
+.TP
+\-N NAME, --namespace NAME
+set namespace
+.TP
+\-P PARENT, --parent PARENT
+set parent class
+.TP
+\-I INTERFACE, --implements INTERFACE
+set implemented interface
+.TP
+\-A, --abstract
+generate an abstract class
+.TP
+\-F, --interface
+generate an interface
+.TP
+\-p, --private
+include structure to hold private members
+.TP
+\-d, --dispose
+include dispose method
+.TP
+\-f, --finalize
+include finalize method
+.TP
+\-s, --propset
+include method to set properties
+.TP
+\-g, --propget
+include method to get properties
+
+.SH EXAMPLES
+.
+.PP
+.B Generate source code for simple class FooBarFrobnicator
+.nf
+$ gobjectogen -N FooBar FooBarFrobnicator
+.fi
+.
+.PP
+.B Generate source code for complex class FooFrobnicator
+.nf
+$ gobjectogen -P FooBaz -I GooGlopable -gspdf FooFrobnicator
+.fi
+.br
+.P
+This class subclasses FooBaz, implements GooGlopable, with private members
+and accessors.
+.
+
+.SH AUTHOR
+Written by Eric Le Bihan <eric.le.bihan.dev@free.fr>
+
+.SH COPYRIGHT
+Copyright (C) 2013 Eric Le Bihan
+
