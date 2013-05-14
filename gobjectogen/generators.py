@@ -20,6 +20,8 @@ import os
 import re
 import pystache
 import templates
+import gettext
+from gettext import gettext as _
 
 def camel_to_upper(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
@@ -35,7 +37,7 @@ def split_class_name(klass_name):
 def write_file(filename, contents):
     with open(filename, 'w') as output:
         output.write(contents)
-    print "Wrote %s" % filename
+    print _("Wrote %s") % filename
 
 CLASS_HAS_PRIVATE = 1 << 0
 CLASS_HAS_PROPGET = 1 << 1

@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from setuptools import setup
+from disthelpers import build, build_trans, install_data
 import sys
 
 setup(name='gobjectogen',
@@ -36,6 +37,8 @@ setup(name='gobjectogen',
       scripts=['scripts/gobjectogen'],
       data_files=[('share/man/man1', ['data/gobjectogen.1'])],
       author='Eric Le Bihan',
-      author_email='eric.le.bihan.dev@free.fr')
+      author_email='eric.le.bihan.dev@free.fr',
+      cmdclass = {'build': build, 'build_trans': build_trans,
+                  'install_data': install_data})
 
 # vim: ts=4 sts=4 sw=4 sta et ai

@@ -21,6 +21,17 @@ import sys
 import os
 import argparse
 from gobjectogen.generators import *
+import gettext
+from gettext import gettext as _
+
+if hasattr(sys, 'frozen'):
+    ROOT_DIR = os.path.dirname(sys.executable)
+else:
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOCALE_DIR = os.path.join(ROOT_DIR, '..', 'share', 'locale')
+
+gettext.bindtextdomain('gobjectogen', LOCALE_DIR)
+gettext.textdomain('gobjectogen')
 
 def configure_generator(gen, args):
     gen.parent = args.parent
@@ -42,50 +53,51 @@ def configure_generator(gen, args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('name',
-                        metavar='NAME',
-                        help='name of the GObject class (in CamelCase)')
-    parser.add_argument('-O', '--output',
-                        metavar='DIRECTORY',
+                        metavar=_('NAME'),
+                        help=_('name of the GObject class (in CamelCase)'))
+    parser.add_argument('-o', '--output',
+                        metavar=_('DIRECTORY'),
                         default=os.getcwd(),
-                        help='set output directory')
+                        help=_('set output directory'))
     parser.add_argument('-N', '--namespace',
-                        metavar='NAME',
-                        help='set namespace')
+                        metavar=_('NAME'),
+                        help=_('set namespace'))
     parser.add_argument('-P', '--parent',
-                        help='set parent class')
+                        help=_('set parent class'))
     parser.add_argument('-I', '--implements',
                         action='append',
                         dest='interfaces',
-                        metavar='INTERFACE',
-                        help='set implemented interface')
+                        default=[],
+                        metavar=_('INTERFACE'),
+                        help=_('set implemented interface'))
     parser.add_argument('-A', '--abstract',
                         action='store_true',
                         default=False,
-                        help='generate an abstract class')
+                        help=_('generate an abstract class'))
     parser.add_argument('-F', '--interface',
                         action='store_true',
                         default=False,
-                        help='generate an interface')
+                        help=_('generate an interface'))
     parser.add_argument('-p', '--private',
                         action='store_true',
                         default=False,
-                        help='include structure to hold private members')
+                        help=_('include structure to hold private members'))
     parser.add_argument('-d', '--dispose',
                         action='store_true',
                         default=False,
-                        help='include dispose method')
+                        help=_('include dispose method'))
     parser.add_argument('-f', '--finalize',
                         action='store_true',
                         default=False,
-                        help='include finalize method')
+                        help=_('include finalize method'))
     parser.add_argument('-s', '--propset',
                         action='store_true',
                         default=False,
-                        help='include method to set properties')
+                        help=_('include method to set properties'))
     parser.add_argument('-g', '--propget',
                         action='store_true',
                         default=False,
-                        help='include method to get properties')
+                        help=_('include method to get properties'))
     args = parser.parse_args()
 
     if args.interface:

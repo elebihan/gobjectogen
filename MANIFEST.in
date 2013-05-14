@@ -1,4 +1,7 @@
 include AUTHORS
-include README.rst
 include COPYING
+include HACKING
+include README.rst
+include disthelpers.py
 recursive-include data *
+recursive-include po *.po

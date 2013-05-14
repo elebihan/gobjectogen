@@ -1,0 +1,85 @@
+#
+# gobjectogen - GObject generator
+#
+# Copyright (c) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+#
+# This file is distributed under the same license as the gobjectogen package.
+# Eric Le Bihan <eric.le.bihan.dev@free.fr>, 2013
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gobjectogen 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-14 12:55+0200\n"
+"PO-Revision-Date: 2013-05-14 12:56+0200\n"
+"Last-Translator: Eric Le Bihan <eric.le.bihan.dev@free.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scripts/gobjectogen:56 scripts/gobjectogen:63
+msgid "NAME"
+msgstr "NOM"
+
+#: scripts/gobjectogen:57
+msgid "name of the GObject class (in CamelCase)"
+msgstr "nom de la class GObject (en CamelCase)"
+
+#: scripts/gobjectogen:59
+msgid "DIRECTORY"
+msgstr "RÉPERTOIRE"
+
+#: scripts/gobjectogen:61
+msgid "set output directory"
+msgstr "définir le répertoire de sortie"
+
+#: scripts/gobjectogen:64
+msgid "set namespace"
+msgstr "définir l'espace de nommage"
+
+#: scripts/gobjectogen:66
+msgid "set parent class"
+msgstr "définir la classe parente"
+
+#: scripts/gobjectogen:70
+msgid "INTERFACE"
+msgstr "INTERFACE"
+
+#: scripts/gobjectogen:71
+msgid "set implemented interface"
+msgstr "définir une interface implémentée"
+
+#: scripts/gobjectogen:75
+msgid "generate an abstract class"
+msgstr "générer une classe abstraite"
+
+#: scripts/gobjectogen:79
+msgid "generate an interface"
+msgstr "générer une interface"
+
+#: scripts/gobjectogen:83
+msgid "include structure to hold private members"
+msgstr "inclure une structure pour les variables membres privées"
+
+#: scripts/gobjectogen:87
+msgid "include dispose method"
+msgstr "inclure une méthode 'dispose'"
+
+#: scripts/gobjectogen:91
+msgid "include finalize method"
+msgstr "inclure une méthode 'finalize'"
+
+#: scripts/gobjectogen:95
+msgid "include method to set properties"
+msgstr "inclure une méthode pour affecter les propriétés"
+
+#: scripts/gobjectogen:99
+msgid "include method to get properties"
+msgstr "inclure une méthode pour lire les propriétés"
+
+#: gobjectogen/generators.py:40
+#, python-format
+msgid "Wrote %s"
+msgstr "Écriture de %s"

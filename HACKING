@@ -1,0 +1,15 @@
+Hacking on gobjectogen
+======================
+
+Translation
+-----------
+
+To generate the template::
+
+  $ xgettext -o po/gobjectogen.pot -L python -k_ scripts/gobjectogen gobjectogen/*.py
+
+To update the french translation::
+
+  $ msgmerge --update po/fr.po po/gobjectogen.pot
+
+.. vim: ft=rst
