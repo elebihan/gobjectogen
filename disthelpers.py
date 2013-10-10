@@ -21,6 +21,7 @@
 from distutils import cmd
 from distutils.command.install_data import install_data as _install_data
 from distutils.command.build import build as _build
+from docutils.core import publish_file
 import os
 import subprocess
 
@@ -49,8 +50,33 @@ class build_trans(cmd.Command):
                     args = ['msgfmt', src, '--output-file', dst]
                     subprocess.check_call(args)
 
+class build_man(cmd.Command):
+    description = 'build MAN page from restructuredtext'
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        man_dir = os.path.join(os.path.dirname(os.curdir), 'man')
+        for path, names, filenames in os.walk(man_dir):
+            for f in filenames:
+                if f.endswith('.rst'):
+                    filename, section, ext = f.rsplit('.', 2)
+                    dst_dir = os.path.join('build', 'man', 'man' + section)
+                    if not os.path.exists(dst_dir):
+                        os.makedirs(dst_dir)
+                    src = os.path.join(path, f)
+                    dst = os.path.join(dst_dir, filename + '.' + section)
+                    print "Converting %s" % src
+                    publish_file(source_path=src,
+                                 destination_path=dst,
+                                 writer_name='manpage')
+
 class build(_build):
     sub_commands = _build.sub_commands + [('build_trans', None)]
+    sub_commands += [('build_man', None)]
     def run(self):
         _build.run(self)
 

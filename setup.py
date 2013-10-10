@@ -17,12 +17,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from setuptools import setup
-from disthelpers import build, build_trans, install_data
-import sys
+from distutils.core import setup
+from disthelpers import build, build_trans, build_man, install_data
+from gobjectogen import __version__
 
 setup(name='gobjectogen',
-      version='0.1.0',
+      version=__version__,
       description='GObject source code generator',
       long_description='''
       This program generates source code for programs using the GObject type
@@ -31,14 +31,20 @@ setup(name='gobjectogen',
       license='GPLv3',
       url='https://github.com/elebihan/gobjectogen/',
       platforms=['Any'],
+      classifiers=('Programming Language :: Python :: 2',
+                   'Intended Audience :: Developers',
+                   'Natural Language :: English'
+                   'License :: OSI Approved :: GNU General Public License (GPL)',),
       keywords=['gobject', 'code generator'],
-      install_requires=['pystache>=0.5'],
+      requires=['pystache (>=0.5)', 'docutils (>=0.11)'],
       packages=['gobjectogen'],
       scripts=['scripts/gobjectogen'],
-      data_files=[('share/man/man1', ['data/gobjectogen.1'])],
+      data_files=[('share/man/man1', ['build/man/man1/gobjectogen.1'])],
       author='Eric Le Bihan',
       author_email='eric.le.bihan.dev@free.fr',
-      cmdclass = {'build': build, 'build_trans': build_trans,
+      cmdclass = {'build': build,
+                  'build_trans': build_trans,
+                  'build_man': build_man,
                   'install_data': install_data})
 
 # vim: ts=4 sts=4 sw=4 sta et ai
