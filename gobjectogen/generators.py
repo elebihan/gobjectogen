@@ -67,6 +67,8 @@ class ClassGenerator:
         self._code = templates.TEMPLATE_CLASS_CODE
 
     def generate(self, directory):
+        if not os.path.exists(directory):
+            os.makedirs(directory)
         self.update_values()
         self.generate_header(directory)
         self.generate_code(directory)
