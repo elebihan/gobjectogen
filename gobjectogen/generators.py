@@ -19,17 +19,17 @@
 import os
 import re
 import pystache
-import templates
+from . import templates
 import gettext
 from gettext import gettext as _
 
 def camel_to_upper(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
-    return '_'.join(map(lambda x: x.upper(), crumbs))
+    return '_'.join([x.upper() for x in crumbs])
 
 def camel_to_lower(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
-    return '_'.join(map(lambda x: x.lower(), crumbs))
+    return '_'.join([x.lower() for x in crumbs])
 
 def split_class_name(klass_name):
     return re.split(r'(^[A-Z][^A-Z]*)', klass_name, 1)[1:]
@@ -37,7 +37,7 @@ def split_class_name(klass_name):
 def write_file(filename, contents):
     with open(filename, 'w') as output:
         output.write(contents)
-    print _("Wrote %s") % filename
+    print(_("Wrote %s") % filename)
 
 CLASS_HAS_PRIVATE = 1 << 0
 CLASS_HAS_PROPGET = 1 << 1

@@ -46,7 +46,7 @@ class build_trans(cmd.Command):
                     dst = os.path.join(mo_dir, MO_FILE)
                     if not os.path.exists(mo_dir):
                         os.makedirs(mo_dir)
-                    print "Compiling %s" % src
+                    print("Compiling %s" % src)
                     args = ['msgfmt', src, '--output-file', dst]
                     subprocess.check_call(args)
 
@@ -69,7 +69,7 @@ class build_man(cmd.Command):
                         os.makedirs(dst_dir)
                     src = os.path.join(path, f)
                     dst = os.path.join(dst_dir, filename + '.' + section)
-                    print "Converting %s" % src
+                    print("Converting %s" % src)
                     publish_file(source_path=src,
                                  destination_path=dst,
                                  writer_name='manpage')
