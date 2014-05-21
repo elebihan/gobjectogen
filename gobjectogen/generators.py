@@ -181,4 +181,23 @@ class InterfaceGenerator(ClassGenerator):
         self._values['iface_lower'] = self._values['class_lower']
         self._values['iface_upper'] = self._values['object_upper']
 
+class BoxedGenerator(ClassGenerator):
+    '''Generates source code for boxed types.
+
+    :param name: name of the boxed type
+    :type  name: str
+
+    A boxed type is a wrapper around an opaque C structure.
+    '''
+    def __init__(self, name):
+        ClassGenerator.__init__(self, name)
+        self._header = templates.TEMPLATE_BOXED_HEADER
+        self._code = templates.TEMPLATE_BOXED_CODE
+
+    def update_values(self):
+        ClassGenerator.update_values(self)
+        self._values['boxed_camel'] = self._values['class_camel']
+        self._values['boxed_lower'] = self._values['class_lower']
+        self._values['boxed_upper'] = self._values['object_upper']
+
 # vim: ts=4 sw=4 sts=4 et ai

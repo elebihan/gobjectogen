@@ -41,6 +41,7 @@ OPTIONS
   -N NAME, --namespace NAME     set namespace
   -P PARENT, --parent PARENT    set parent class
   -A, --abstract                generate an abstract class
+  -B, --boxed                   generate a boxed type
   -F, --interface               generate an interface
   -I IFACE, --implements IFACE  set implemented interface
   -E NAME, --error NAME         add an error code

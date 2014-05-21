@@ -20,7 +20,9 @@
 import sys
 import os
 import argparse
-from gobjectogen.generators import ClassGenerator, InterfaceGenerator
+from gobjectogen.generators import (ClassGenerator,
+                                    InterfaceGenerator,
+                                    BoxedGenerator)
 from gobjectogen.generators import (CLASS_HAS_PRIVATE, CLASS_HAS_PROPGET,
                                     CLASS_HAS_PROPSET, CLASS_HAS_DISPOSE,
                                     CLASS_HAS_FINALIZE, CLASS_IS_ABSTRACT)
@@ -84,6 +86,10 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help=_('generate an abstract class'))
+    parser.add_argument('-B', '--boxed',
+                        action='store_true',
+                        default=False,
+                        help=_('generate a boxed type'))
     parser.add_argument('-F', '--interface',
                         action='store_true',
                         default=False,
@@ -129,9 +135,11 @@ if __name__ == '__main__':
 
     if args.interface:
         gen = InterfaceGenerator(args.name)
+    elif args.boxed:
+        gen = BoxedGenerator(args.name)
     else:
         gen = ClassGenerator(args.name)
-        configure_generator(gen, args)
+    configure_generator(gen, args)
 
     gen.generate(args.output)
 
