@@ -150,17 +150,16 @@ class ClassGenerator:
             self._values.update(values)
 
     def generate_header(self, directory):
-        filename = os.path.join(directory, self._values['filename'])
-        filename += '.h'
-
-        contents = pystache.render(self._header, self._values)
-        write_file(filename, contents)
+        filename = os.path.join(directory, self._values['filename']) + '.h'
+        self._render_template(self._header, filename)
 
     def generate_code(self, directory):
-        filename = os.path.join(directory, self._values['filename'])
-        filename += '.c'
+        filename = os.path.join(directory, self._values['filename']) + '.c'
+        self._render_template(self._code, filename)
 
-        contents = pystache.render(self._code, self._values)
+    def _render_template(self, text, filename):
+        renderer = pystache.Renderer(escape=lambda u: u)
+        contents = renderer.render(text, self._values)
         write_file(filename, contents)
 
 class InterfaceGenerator(ClassGenerator):
