@@ -19,71 +19,92 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scripts/gobjectogen:60 scripts/gobjectogen:67 scripts/gobjectogen:89
+#: scripts/gobjectogen:66 scripts/gobjectogen:73 scripts/gobjectogen:95
+#: scripts/gobjectogen:118
 msgid "NAME"
 msgstr "NOM"
 
-#: scripts/gobjectogen:61
+#: scripts/gobjectogen:67
 msgid "name of the GObject class (in CamelCase)"
 msgstr "nom de la class GObject (en CamelCase)"
 
-#: scripts/gobjectogen:63
+#: scripts/gobjectogen:69
 msgid "DIRECTORY"
 msgstr "RÉPERTOIRE"
 
-#: scripts/gobjectogen:65
+#: scripts/gobjectogen:71
 msgid "set output directory"
 msgstr "définir le répertoire de sortie"
 
-#: scripts/gobjectogen:68
+#: scripts/gobjectogen:74
 msgid "set namespace"
 msgstr "définir l'espace de nommage"
 
-#: scripts/gobjectogen:70
+#: scripts/gobjectogen:76
 msgid "set parent class"
 msgstr "définir la classe parente"
 
-#: scripts/gobjectogen:75
+#: scripts/gobjectogen:81
 msgid "INTERFACE"
 msgstr "INTERFACE"
 
-#: scripts/gobjectogen:76
+#: scripts/gobjectogen:82
 msgid "set implemented interface"
 msgstr "définir une interface implémentée"
 
-#: scripts/gobjectogen:80
+#: scripts/gobjectogen:86
 msgid "generate an abstract class"
 msgstr "générer une classe abstraite"
 
-#: scripts/gobjectogen:84
+#: scripts/gobjectogen:90
 msgid "generate an interface"
 msgstr "générer une interface"
 
-#: scripts/gobjectogen:90
+#: scripts/gobjectogen:96
 msgid "add an error code"
 msgstr "ajouter un code d'erreur"
 
-#: scripts/gobjectogen:94
+#: scripts/gobjectogen:100
 msgid "include structure to hold private members"
 msgstr "inclure une structure pour les variables membres privées"
 
-#: scripts/gobjectogen:98
+#: scripts/gobjectogen:104
 msgid "include dispose method"
 msgstr "inclure une méthode 'dispose'"
 
-#: scripts/gobjectogen:102
+#: scripts/gobjectogen:108
 msgid "include finalize method"
 msgstr "inclure une méthode 'finalize'"
 
-#: scripts/gobjectogen:106
+#: scripts/gobjectogen:112
 msgid "include method to set properties"
 msgstr "inclure une méthode pour affecter les propriétés"
 
-#: scripts/gobjectogen:110
+#: scripts/gobjectogen:116
 msgid "include method to get properties"
 msgstr "inclure une méthode pour lire les propriétés"
 
-#: gobjectogen/generators.py:39
+#: scripts/gobjectogen:120
+msgid "set author of the program"
+msgstr "définir l'auteur du programme"
+
+#: scripts/gobjectogen:122
+msgid "TEXT"
+msgstr "TEXTE"
+
+#: scripts/gobjectogen:124
+msgid "set description of the program"
+msgstr "définir la description du programme"
+
+#: scripts/gobjectogen:126
+msgid "FILE"
+msgstr "FICHIER"
+
+#: scripts/gobjectogen:127
+msgid "set path to license file"
+msgstr "définir le chemin vers le fichier de licence"
+
+#: gobjectogen/generators.py:40
 #, python-format
 msgid "Wrote %s"
 msgstr "Écriture de %s"

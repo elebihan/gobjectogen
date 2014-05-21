@@ -21,6 +21,7 @@ import re
 import pystache
 from . import templates
 from gettext import gettext as _
+from datetime import datetime
 
 def camel_to_upper(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
@@ -56,6 +57,9 @@ class ClassGenerator:
 
     parent = None
     namespace = None
+    author = None
+    description = None
+    license = None
     interfaces = []
     errors = []
     flags = 0
@@ -96,6 +100,11 @@ class ClassGenerator:
             implemented_ifaces.append(templates.TEMPLATE_IFACE_DECL % values)
             ifaces.append(values)
 
+        if self.license is None:
+            self.license = 'Insert license text here'
+
+        lines = map(lambda l: " * {}".format(l), self.license.split('\n'))
+
         values = {
             'ns_upper': camel_to_upper(self.namespace),
             'object_upper': camel_to_upper(object_camel),
@@ -118,6 +127,10 @@ class ClassGenerator:
             'implements_iface': len(self.interfaces) != 0,
             'implemented_ifaces': ',\n'.join(implemented_ifaces),
             'ifaces': ifaces,
+            'description': self.description,
+            'author': self.author,
+            'year': datetime.today().year,
+            'license': '\n'.join(lines),
         }
         self._values.update(values)
 

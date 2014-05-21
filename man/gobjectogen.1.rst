@@ -49,6 +49,9 @@ OPTIONS
   -f, --finalize                include finalize method
   -g, --propget                 include method to get properties
   -s, --propset                 include method to set properties
+  -a NAME, --author NAME        set author of the program
+  -t TEXT, --description TEXT   set description of the program
+  -l FILE, --license-file FILE  set path to license file
 
 EXAMPLES
 ========

@@ -41,6 +41,8 @@ def configure_generator(gen, args):
     gen.namespace = args.namespace
     gen.interfaces = args.interfaces
     gen.errors = args.errors
+    gen.author = args.author
+    gen.description = args.description
     if args.private:
         gen.flags |= CLASS_HAS_PRIVATE
     if args.propget:
@@ -53,6 +55,10 @@ def configure_generator(gen, args):
         gen.flags |= CLASS_HAS_FINALIZE
     if args.abstract:
         gen.flags |= CLASS_IS_ABSTRACT
+
+    if args.license_file:
+        with open(args.license_file) as f:
+            gen.license = f.read()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -108,6 +114,17 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help=_('include method to get properties'))
+    parser.add_argument('-a', '--author',
+                        metavar=_('NAME'),
+                        default='Unknown',
+                        help=_('set author of the program'))
+    parser.add_argument('-t', '--description',
+                        metavar=_('TEXT'),
+                        default='Insert program description here',
+                        help=_('set description of the program'))
+    parser.add_argument('-l', '--license-file',
+                        metavar=_('FILE'),
+                        help=_('set path to license file'))
     args = parser.parse_args()
 
     if args.interface:

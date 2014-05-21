@@ -16,7 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-TEMPLATE_CLASS_HEADER = """
+TEMPLATE_CLASS_HEADER = """/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
 #ifndef {{header_guard}}
 #define {{header_guard}}
 
@@ -103,7 +110,14 @@ G_END_DECLS
 #endif /* {{header_guard}} */
 """
 
-TEMPLATE_CLASS_CODE = """
+TEMPLATE_CLASS_CODE = """/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
 #include "{{filename}}.h"
 
 /**
@@ -270,7 +284,13 @@ static void
 
 TEMPLATE_IFACE_DECL = "G _IMPLEMENT_INTERFACE(%(iface_ns_upper)s_TYPE_%(iface_name_upper)s, %(iface_lower)s_iface_init)"
 
-TEMPLATE_IFACE_HEADER = """
+TEMPLATE_IFACE_HEADER = """/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
 #ifndef {{header_guard}}
 #define {{header_guard}}
 
@@ -308,7 +328,14 @@ G_END_DECLS
 #endif /* {{header_guard}} */
 """
 
-TEMPLATE_IFACE_CODE = """
+TEMPLATE_IFACE_CODE = """/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
 #include "{{filename}}.h"
 
 /**
