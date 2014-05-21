@@ -20,7 +20,6 @@ import os
 import re
 import pystache
 from . import templates
-import gettext
 from gettext import gettext as _
 
 def camel_to_upper(string):
@@ -75,9 +74,9 @@ class ClassGenerator:
         self.generate_code(directory)
 
     def update_values(self):
-        if self.parent == None:
+        if self.parent is None:
             self.parent = 'GObject'
-        if self.namespace == None:
+        if self.namespace is None:
             self.namespace, object_camel = split_class_name(self._klass_name)
         else:
             object_camel = self._klass_name.replace(self.namespace, '')
@@ -93,33 +92,33 @@ class ClassGenerator:
                 'iface_camel': iface,
                 'iface_ns_upper': camel_to_upper(ns),
                 'iface_name_upper': camel_to_upper(name),
-                 }
+            }
             implemented_ifaces.append(templates.TEMPLATE_IFACE_DECL % values)
             ifaces.append(values)
 
         values = {
-                'ns_upper': camel_to_upper(self.namespace),
-                'object_upper': camel_to_upper(object_camel),
-                'class_camel': self._klass_name,
-                'class_upper': camel_to_upper(self._klass_name),
-                'class_lower': camel_to_lower(self._klass_name),
-                'parent_camel' : self.parent,
-                'parent_ns_upper': camel_to_upper(parent_ns_upper),
-                'parent_object_upper': camel_to_upper(parent_object_upper),
-                'header_guard': camel_to_upper(self._klass_name) + '_H',
-                'filename': camel_to_lower(self._klass_name).replace('_', '-'),
-                'define_type': '',
-                'has_private': self.flags & CLASS_HAS_PRIVATE,
-                'has_propset': self.flags & CLASS_HAS_PROPSET,
-                'has_propget': self.flags & CLASS_HAS_PROPGET,
-                'has_dispose': self.flags & CLASS_HAS_DISPOSE,
-                'has_finalize': self.flags & CLASS_HAS_FINALIZE,
-                'has_class_init': self.flags != 0,
-                'is_abstract': self.flags & CLASS_IS_ABSTRACT,
-                'implements_iface': len(self.interfaces) != 0,
-                'implemented_ifaces': ',\n'.join(implemented_ifaces),
-                'ifaces': ifaces,
-                }
+            'ns_upper': camel_to_upper(self.namespace),
+            'object_upper': camel_to_upper(object_camel),
+            'class_camel': self._klass_name,
+            'class_upper': camel_to_upper(self._klass_name),
+            'class_lower': camel_to_lower(self._klass_name),
+            'parent_camel': self.parent,
+            'parent_ns_upper': camel_to_upper(parent_ns_upper),
+            'parent_object_upper': camel_to_upper(parent_object_upper),
+            'header_guard': camel_to_upper(self._klass_name) + '_H',
+            'filename': camel_to_lower(self._klass_name).replace('_', '-'),
+            'define_type': '',
+            'has_private': self.flags & CLASS_HAS_PRIVATE,
+            'has_propset': self.flags & CLASS_HAS_PROPSET,
+            'has_propget': self.flags & CLASS_HAS_PROPGET,
+            'has_dispose': self.flags & CLASS_HAS_DISPOSE,
+            'has_finalize': self.flags & CLASS_HAS_FINALIZE,
+            'has_class_init': self.flags != 0,
+            'is_abstract': self.flags & CLASS_IS_ABSTRACT,
+            'implements_iface': len(self.interfaces) != 0,
+            'implemented_ifaces': ',\n'.join(implemented_ifaces),
+            'ifaces': ifaces,
+        }
         self._values.update(values)
 
         if self.errors:

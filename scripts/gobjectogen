@@ -20,7 +20,10 @@
 import sys
 import os
 import argparse
-from gobjectogen.generators import *
+from gobjectogen.generators import ClassGenerator, InterfaceGenerator
+from gobjectogen.generators import (CLASS_HAS_PRIVATE, CLASS_HAS_PROPGET,
+                                    CLASS_HAS_PROPSET, CLASS_HAS_DISPOSE,
+                                    CLASS_HAS_FINALIZE, CLASS_IS_ABSTRACT)
 import gettext
 from gettext import gettext as _
 
