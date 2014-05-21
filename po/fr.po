@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gobjectogen 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-14 12:55+0200\n"
-"PO-Revision-Date: 2013-05-14 12:56+0200\n"
+"PO-Revision-Date: 2014-05-21 13:16+0200\n"
 "Last-Translator: Eric Le Bihan <eric.le.bihan.dev@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,67 +19,71 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scripts/gobjectogen:56 scripts/gobjectogen:63
+#: scripts/gobjectogen:60 scripts/gobjectogen:67 scripts/gobjectogen:89
 msgid "NAME"
 msgstr "NOM"
 
-#: scripts/gobjectogen:57
+#: scripts/gobjectogen:61
 msgid "name of the GObject class (in CamelCase)"
 msgstr "nom de la class GObject (en CamelCase)"
 
-#: scripts/gobjectogen:59
+#: scripts/gobjectogen:63
 msgid "DIRECTORY"
 msgstr "RÉPERTOIRE"
 
-#: scripts/gobjectogen:61
+#: scripts/gobjectogen:65
 msgid "set output directory"
 msgstr "définir le répertoire de sortie"
 
-#: scripts/gobjectogen:64
+#: scripts/gobjectogen:68
 msgid "set namespace"
 msgstr "définir l'espace de nommage"
 
-#: scripts/gobjectogen:66
+#: scripts/gobjectogen:70
 msgid "set parent class"
 msgstr "définir la classe parente"
 
-#: scripts/gobjectogen:70
+#: scripts/gobjectogen:75
 msgid "INTERFACE"
 msgstr "INTERFACE"
 
-#: scripts/gobjectogen:71
+#: scripts/gobjectogen:76
 msgid "set implemented interface"
 msgstr "définir une interface implémentée"
 
-#: scripts/gobjectogen:75
+#: scripts/gobjectogen:80
 msgid "generate an abstract class"
 msgstr "générer une classe abstraite"
 
-#: scripts/gobjectogen:79
+#: scripts/gobjectogen:84
 msgid "generate an interface"
 msgstr "générer une interface"
 
-#: scripts/gobjectogen:83
+#: scripts/gobjectogen:90
+msgid "add an error code"
+msgstr "ajouter un code d'erreur"
+
+#: scripts/gobjectogen:94
 msgid "include structure to hold private members"
 msgstr "inclure une structure pour les variables membres privées"
 
-#: scripts/gobjectogen:87
+#: scripts/gobjectogen:98
 msgid "include dispose method"
 msgstr "inclure une méthode 'dispose'"
 
-#: scripts/gobjectogen:91
+#: scripts/gobjectogen:102
 msgid "include finalize method"
 msgstr "inclure une méthode 'finalize'"
 
-#: scripts/gobjectogen:95
+#: scripts/gobjectogen:106
 msgid "include method to set properties"
 msgstr "inclure une méthode pour affecter les propriétés"
 
-#: scripts/gobjectogen:99
+#: scripts/gobjectogen:110
 msgid "include method to get properties"
 msgstr "inclure une méthode pour lire les propriétés"
 
-#: gobjectogen/generators.py:40
+#: gobjectogen/generators.py:39
 #, python-format
 msgid "Wrote %s"
 msgstr "Écriture de %s"

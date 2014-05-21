@@ -74,6 +74,30 @@ GType {{class_lower}}_get_type(void) G_GNUC_CONST;
 {{class_camel}}* {{class_lower}}_new(void);
 {{/is_abstract}}
 
+{{#has_errors}}
+/**
+ * {{error_type}}:
+{{#errors}}
+ * @{{error}}:
+{{/errors}}
+ *
+ * Insert description of the error here
+ */
+typedef enum {
+{{#errors}}
+    {{error}},
+{{/errors}}
+} {{error_type}};
+
+/**
+ * {{class_upper}}_ERROR:
+ *
+ * Error domain for #{{class_camel}}
+ */
+#define {{class_upper}}_ERROR ({{class_lower}}_error_quark())
+GQuark {{class_lower}}_error_quark(void);
+{{/has_errors}}
+
 G_END_DECLS
 
 #endif /* {{header_guard}} */
@@ -89,6 +113,18 @@ TEMPLATE_CLASS_CODE = """
  *
  * Insert documentation here.
  */
+
+{{#has_errors}}
+GQuark
+{{class_lower}}_error_quark(void)
+{
+	static GQuark error_quark = 0;
+	if (error_quark == 0) {
+		error_quark = g_quark_from_static_string("{{filename}}");
+	}
+	return error_quark;
+}
+{{/has_errors}}
 
 {{#ifaces}}
 static void {{iface_lower}}_iface_init({{iface_camel}}Iface *iface);

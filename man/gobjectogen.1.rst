@@ -31,6 +31,9 @@ DESCRIPTION
   Other command line options are available to include the default property
   getter and setter, as well as private members or implemented interface.
 
+  It is also possible to add a GError domain and codes, using the *--error*
+  option.
+
 OPTIONS
 =======
 
@@ -40,6 +43,7 @@ OPTIONS
   -A, --abstract                generate an abstract class
   -F, --interface               generate an interface
   -I IFACE, --implements IFACE  set implemented interface
+  -E NAME, --error NAME         add an error code
   -p, --private                 include structure to hold private members
   -d, --dispose                 include dispose method
   -f, --finalize                include finalize method
@@ -57,5 +61,9 @@ EXAMPLES
   FooBaz, implements GooGlopable and has private members with accessors::
 
     $ gobjectogen -P FooBaz -I GooGlopable -gspdf FooFrobnicator
+
+  Generate source code for class FooBarQuux with two error codes::
+
+    $ gobjectogen -N FooBar -E file-not-found -E frob-failed FooBarQuux
 
 .. vim: ft=rst

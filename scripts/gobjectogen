@@ -37,6 +37,7 @@ def configure_generator(gen, args):
     gen.parent = args.parent
     gen.namespace = args.namespace
     gen.interfaces = args.interfaces
+    gen.errors = args.errors
     if args.private:
         gen.flags |= CLASS_HAS_PRIVATE
     if args.propget:
@@ -78,6 +79,12 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help=_('generate an interface'))
+    parser.add_argument('-E', '--error',
+                        action='append',
+                        dest='errors',
+                        default=[],
+                        metavar=_('NAME'),
+                        help=_('add an error code'))
     parser.add_argument('-p', '--private',
                         action='store_true',
                         default=False,

@@ -58,6 +58,7 @@ class ClassGenerator:
     parent = None
     namespace = None
     interfaces = []
+    errors = []
     flags = 0
 
     def __init__(self, name):
@@ -100,6 +101,7 @@ class ClassGenerator:
                 'ns_upper': camel_to_upper(self.namespace),
                 'object_upper': camel_to_upper(object_camel),
                 'class_camel': self._klass_name,
+                'class_upper': camel_to_upper(self._klass_name),
                 'class_lower': camel_to_lower(self._klass_name),
                 'parent_camel' : self.parent,
                 'parent_ns_upper': camel_to_upper(parent_ns_upper),
@@ -119,6 +121,21 @@ class ClassGenerator:
                 'ifaces': ifaces,
                 }
         self._values.update(values)
+
+        if self.errors:
+            errors = []
+            error_type = "{0}Error".format(self._klass_name)
+            for error in self.errors:
+                name = "{0}_ERROR_{1}".format(camel_to_upper(self._klass_name),
+                                              error.upper().replace('-', '_'))
+                errors.append({'error': name})
+
+            values = {
+                'has_errors': True,
+                'error_type': error_type,
+                'errors': errors
+            }
+            self._values.update(values)
 
     def generate_header(self, directory):
         filename = os.path.join(directory, self._values['filename'])
