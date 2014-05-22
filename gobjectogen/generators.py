@@ -200,4 +200,81 @@ class BoxedGenerator(ClassGenerator):
         self._values['boxed_lower'] = self._values['class_lower']
         self._values['boxed_upper'] = self._values['object_upper']
 
+class AccessorGenerator:
+    '''Generates source code for accessing a property of a GObject.
+
+    :param klass_name: name of the GObject class
+    :type klass_name: str
+
+    :param prop_name: name of the property to access.
+    :type prop_name: str
+
+    :param prop_type: type of the property to access.
+    :type prop_type: str
+    '''
+
+    namespace = None
+    boxed = False
+
+    MODE_HEADER, MODE_CODE = range(2)
+
+    def __init__(self, klass_name, prop_name, prop_type):
+        self._klass_name = klass_name
+
+        prop_name = prop_name.replace('-', '_')
+
+        setter = "{}_set_{}".format(camel_to_lower(klass_name), prop_name)
+        getter = "{}_get_{}".format(camel_to_lower(klass_name), prop_name)
+
+        if prop_type == 'gchar*':
+            prop_type = 'const gchar*'
+        if prop_type[-1] == '*':
+            prop_assert = "g_return_if_fail({} != NULL);".format(prop_name)
+            prop_assert_ret = 'NULL'
+        else:
+            if prop_type == 'gboolean':
+                prop_assert_ret = 'FALSE'
+            else:
+                prop_assert_ret = '0'
+            prop_assert = ''
+
+        self._values = {
+            'class_camel': klass_name,
+            'class_upper': camel_to_upper(klass_name),
+            'setter': setter,
+            'getter': getter,
+            'prop_name': prop_name,
+            'prop_type': prop_type,
+            'prop_assert': prop_assert,
+            'prop_assert_ret': prop_assert_ret,
+        }
+
+    def generate(self, mode=MODE_CODE):
+        '''Generates accessor source code.
+
+        :param mode: mode of generation.
+        :type mode:
+        '''
+        if self.namespace is None:
+            namespace, object_camel = split_class_name(self._klass_name)
+        else:
+            object_camel = self._klass_name.replace(self.namespace, '')
+            namespace = self.namespace
+
+        values = {
+            'ns_upper': camel_to_upper(namespace),
+            'object_upper': camel_to_upper(object_camel),
+            'is_boxed': self.boxed
+        }
+        self._values.update(values)
+
+        if mode == AccessorGenerator.MODE_HEADER:
+            text = templates.TEMPLATE_ACCESSORS_HEADER
+        else:
+            text = templates.TEMPLATE_ACCESSORS_CODE
+
+        renderer = pystache.Renderer(escape=lambda u: u)
+        contents = renderer.render(text, self._values)
+        print(contents)
+
 # vim: ts=4 sw=4 sts=4 et ai

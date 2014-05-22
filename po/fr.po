@@ -19,14 +19,46 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scripts/gobjectogen:68 scripts/gobjectogen:75 scripts/gobjectogen:101
-#: scripts/gobjectogen:124
+#: scripts/gobjectaccessor:39
+msgid "CLASS"
+msgstr "CLASSE"
+
+#: scripts/gobjectaccessor:40 scripts/gobjectogen:69
+msgid "name of the GObject class (in CamelCase)"
+msgstr "nom de la class GObject (en CamelCase)"
+
+#: scripts/gobjectaccessor:42
+msgid "PROPERTY"
+msgstr "PROPRIÉTÉ"
+
+#: scripts/gobjectaccessor:43
+msgid "name of the property"
+msgstr "nom de la propriété"
+
+#: scripts/gobjectaccessor:45
+msgid "TYPE"
+msgstr "TYPE"
+
+#: scripts/gobjectaccessor:46
+msgid "type of the property"
+msgstr "type de la propriété"
+
+#: scripts/gobjectaccessor:49
+msgid "generate code for GBoxed instead of GObject"
+msgstr "générer le code pour GBoxed au lieu de GObject"
+
+#: scripts/gobjectaccessor:53
+msgid "set generation mode"
+msgstr "définir le mode de génération"
+
+#: scripts/gobjectaccessor:55 scripts/gobjectogen:68 scripts/gobjectogen:75
+#: scripts/gobjectogen:101 scripts/gobjectogen:124
 msgid "NAME"
 msgstr "NOM"
 
-#: scripts/gobjectogen:69
-msgid "name of the GObject class (in CamelCase)"
-msgstr "nom de la class GObject (en CamelCase)"
+#: scripts/gobjectaccessor:56 scripts/gobjectogen:76
+msgid "set namespace"
+msgstr "définir l'espace de nommage"
 
 #: scripts/gobjectogen:71
 msgid "DIRECTORY"
@@ -35,10 +67,6 @@ msgstr "RÉPERTOIRE"
 #: scripts/gobjectogen:73
 msgid "set output directory"
 msgstr "définir le répertoire de sortie"
-
-#: scripts/gobjectogen:76
-msgid "set namespace"
-msgstr "définir l'espace de nommage"
 
 #: scripts/gobjectogen:78
 msgid "set parent class"

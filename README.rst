@@ -17,4 +17,7 @@ The generated code is not fully indented, so it is better to use `astyle` (>=
   --align-pointer=name \
   --indent-preprocessor
 
+Another tool is available for generating source/header code for accessing a
+property of an object: `gobjectaccessor`.
+
 .. vim: ft=rst
