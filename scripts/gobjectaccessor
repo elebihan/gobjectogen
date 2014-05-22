@@ -20,6 +20,7 @@
 import sys
 import os
 import argparse
+from gobjectogen import __version__
 from gobjectogen.generators import AccessorGenerator
 import gettext
 from gettext import gettext as _
@@ -35,6 +36,9 @@ gettext.textdomain('gobjectogen')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('--version',
+                        action='version',
+                        version=__version__)
     parser.add_argument('class_name',
                         metavar=_('CLASS'),
                         help=_('name of the GObject class (in CamelCase)'))

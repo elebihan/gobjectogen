@@ -20,6 +20,7 @@
 import sys
 import os
 import argparse
+from gobjectogen import __version__
 from gobjectogen.generators import (ClassGenerator,
                                     InterfaceGenerator,
                                     BoxedGenerator)
@@ -64,6 +65,9 @@ def configure_generator(gen, args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('--version',
+                        action='version',
+                        version=__version__)
     parser.add_argument('name',
                         metavar=_('NAME'),
                         help=_('name of the GObject class (in CamelCase)'))
