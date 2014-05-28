@@ -19,6 +19,7 @@
 
 from distutils.core import setup
 from disthelpers import build, build_trans, build_man, install_data
+from glob import glob
 from gobjectogen import __version__
 
 setup(name='gobjectogen',
@@ -38,9 +39,8 @@ setup(name='gobjectogen',
       keywords=['gobject', 'code generator'],
       requires=['pystache (>=0.5)', 'docutils (>=0.11)'],
       packages=['gobjectogen'],
-      scripts=['scripts/gobjectogen', 'scripts/gobjectaccessor'],
-      data_files=[('share/man/man1', ['build/man/man1/gobjectogen.1',
-                                      'build/man/man1/gobjectaccessor.1'])],
+      scripts=glob('scripts/*'),
+      data_files=[('share/man/man1', glob('build/man/man1/*.1'))],
       author='Eric Le Bihan',
       author_email='eric.le.bihan.dev@free.fr',
       cmdclass = {'build': build,
