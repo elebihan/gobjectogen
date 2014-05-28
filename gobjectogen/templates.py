@@ -513,3 +513,18 @@ void
 {{/is_boxed}}
 }
 """
+
+TEMPLATE_ENUMS_HEADER='''/**
+ * {{enum_name}}:
+{{#enum_values}}
+ * @{{value}}:
+{{/enum_values}}
+ *
+ * Insert description of the enumeration here
+ */
+typedef enum {
+{{#enum_values}}
+	{{value}},
+{{/enum_values}}
+} {{enum_name}};'''
+

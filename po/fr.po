@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gobjectogen 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 12:55+0200\n"
+"POT-Creation-Date: 2014-05-28 12:04+0200\n"
 "PO-Revision-Date: 2014-05-21 13:16+0200\n"
 "Last-Translator: Eric Le Bihan <eric.le.bihan.dev@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,120 +19,128 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scripts/gobjectaccessor:39
-msgid "CLASS"
-msgstr "CLASSE"
-
-#: scripts/gobjectaccessor:40 scripts/gobjectogen:69
-msgid "name of the GObject class (in CamelCase)"
-msgstr "nom de la class GObject (en CamelCase)"
-
-#: scripts/gobjectaccessor:42
-msgid "PROPERTY"
-msgstr "PROPRIÉTÉ"
-
-#: scripts/gobjectaccessor:43
-msgid "name of the property"
-msgstr "nom de la propriété"
-
-#: scripts/gobjectaccessor:45
-msgid "TYPE"
-msgstr "TYPE"
-
-#: scripts/gobjectaccessor:46
-msgid "type of the property"
-msgstr "type de la propriété"
-
-#: scripts/gobjectaccessor:49
-msgid "generate code for GBoxed instead of GObject"
-msgstr "générer le code pour GBoxed au lieu de GObject"
-
-#: scripts/gobjectaccessor:53
-msgid "set generation mode"
-msgstr "définir le mode de génération"
-
-#: scripts/gobjectaccessor:55 scripts/gobjectogen:68 scripts/gobjectogen:75
-#: scripts/gobjectogen:101 scripts/gobjectogen:124
+#: scripts/genumogen:44 scripts/gobjectaccessor:59 scripts/gobjectogen:72
+#: scripts/gobjectogen:79 scripts/gobjectogen:105 scripts/gobjectogen:128
 msgid "NAME"
 msgstr "NOM"
 
-#: scripts/gobjectaccessor:56 scripts/gobjectogen:76
+#: scripts/genumogen:45 scripts/gobjectaccessor:44 scripts/gobjectogen:73
+msgid "name of the GObject class (in CamelCase)"
+msgstr "nom de la class GObject (en CamelCase)"
+
+#: scripts/genumogen:48
+msgid "VALUE"
+msgstr "VALEUR"
+
+#: scripts/genumogen:49
+msgid "value of the enumeration"
+msgstr "valeur de l'énumération"
+
+#: scripts/gobjectaccessor:43
+msgid "CLASS"
+msgstr "CLASSE"
+
+#: scripts/gobjectaccessor:46
+msgid "PROPERTY"
+msgstr "PROPRIÉTÉ"
+
+#: scripts/gobjectaccessor:47
+msgid "name of the property"
+msgstr "nom de la propriété"
+
+#: scripts/gobjectaccessor:49
+msgid "TYPE"
+msgstr "TYPE"
+
+#: scripts/gobjectaccessor:50
+msgid "type of the property"
+msgstr "type de la propriété"
+
+#: scripts/gobjectaccessor:53
+msgid "generate code for GBoxed instead of GObject"
+msgstr "générer le code pour GBoxed au lieu de GObject"
+
+#: scripts/gobjectaccessor:57
+msgid "set generation mode"
+msgstr "définir le mode de génération"
+
+#: scripts/gobjectaccessor:60 scripts/gobjectogen:80
 msgid "set namespace"
 msgstr "définir l'espace de nommage"
 
-#: scripts/gobjectogen:71
+#: scripts/gobjectogen:75
 msgid "DIRECTORY"
 msgstr "RÉPERTOIRE"
 
-#: scripts/gobjectogen:73
+#: scripts/gobjectogen:77
 msgid "set output directory"
 msgstr "définir le répertoire de sortie"
 
-#: scripts/gobjectogen:78
+#: scripts/gobjectogen:82
 msgid "set parent class"
 msgstr "définir la classe parente"
 
-#: scripts/gobjectogen:83
+#: scripts/gobjectogen:87
 msgid "INTERFACE"
 msgstr "INTERFACE"
 
-#: scripts/gobjectogen:84
+#: scripts/gobjectogen:88
 msgid "set implemented interface"
 msgstr "définir une interface implémentée"
 
-#: scripts/gobjectogen:88
+#: scripts/gobjectogen:92
 msgid "generate an abstract class"
 msgstr "générer une classe abstraite"
 
-#: scripts/gobjectogen:92
+#: scripts/gobjectogen:96
 msgid "generate a boxed type"
 msgstr "générer un type 'boxed'"
 
-#: scripts/gobjectogen:96
+#: scripts/gobjectogen:100
 msgid "generate an interface"
 msgstr "générer une interface"
 
-#: scripts/gobjectogen:102
+#: scripts/gobjectogen:106
 msgid "add an error code"
 msgstr "ajouter un code d'erreur"
 
-#: scripts/gobjectogen:106
+#: scripts/gobjectogen:110
 msgid "include structure to hold private members"
 msgstr "inclure une structure pour les variables membres privées"
 
-#: scripts/gobjectogen:110
+#: scripts/gobjectogen:114
 msgid "include dispose method"
 msgstr "inclure une méthode 'dispose'"
 
-#: scripts/gobjectogen:114
+#: scripts/gobjectogen:118
 msgid "include finalize method"
 msgstr "inclure une méthode 'finalize'"
 
-#: scripts/gobjectogen:118
+#: scripts/gobjectogen:122
 msgid "include method to set properties"
 msgstr "inclure une méthode pour affecter les propriétés"
 
-#: scripts/gobjectogen:122
+#: scripts/gobjectogen:126
 msgid "include method to get properties"
 msgstr "inclure une méthode pour lire les propriétés"
 
-#: scripts/gobjectogen:126
+#: scripts/gobjectogen:130
 msgid "set author of the program"
 msgstr "définir l'auteur du programme"
 
-#: scripts/gobjectogen:128
+#: scripts/gobjectogen:132
 msgid "TEXT"
 msgstr "TEXTE"
 
-#: scripts/gobjectogen:130
+#: scripts/gobjectogen:134
 msgid "set description of the program"
 msgstr "définir la description du programme"
 
-#: scripts/gobjectogen:132
+#: scripts/gobjectogen:136
 msgid "FILE"
 msgstr "FICHIER"
 
-#: scripts/gobjectogen:133
+#: scripts/gobjectogen:137
 msgid "set path to license file"
 msgstr "définir le chemin vers le fichier de licence"
 

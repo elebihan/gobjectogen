@@ -277,4 +277,33 @@ class AccessorGenerator:
         contents = renderer.render(text, self._values)
         print(contents)
 
+class EnumGenerator:
+    '''Generates source code for a GLib enumeration.
+
+    :param name: name of the enumeration
+    :type name: str
+
+    :param values: list of values
+    :type values: list of str
+    '''
+
+    def __init__(self, name, values):
+        self._enum_name = name
+        self._enum_values = values
+
+    def generate(self):
+        enum_values = []
+        for value in self._enum_values:
+            newval = "{0}_{1}".format(camel_to_upper(self._enum_name),
+                                      value.upper().replace('-', '_'))
+            enum_values.append({'value': newval})
+        values = {
+            'enum_name': self._enum_name,
+            'enum_values': enum_values,
+        }
+        text = templates.TEMPLATE_ENUMS_HEADER
+        renderer = pystache.Renderer(escape=lambda u: u)
+        contents = renderer.render(text, values)
+        print(contents)
+
 # vim: ts=4 sw=4 sts=4 et ai
