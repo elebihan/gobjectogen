@@ -379,7 +379,7 @@ struct _{{boxed_camel}} {
 
 GType {{boxed_lower}}_get_type(void) G_GNUC_CONST;
 {{boxed_camel}}* {{boxed_lower}}_new(void);
-{{boxed_camel}}* {{boxed_lower}}_copy(const {{boxed_camel}}* self);
+{{boxed_camel}}* {{boxed_lower}}_copy(const {{boxed_camel}} *self);
 void {{boxed_lower}}_free({{boxed_camel}}* self);
 
 G_END_DECLS
@@ -472,7 +472,7 @@ TEMPLATE_ACCESSORS_CODE = """
  * Sets the value of {{prop_name}}
  */
 void
-{{setter}}({{class_camel}}* self, {{prop_type}} {{prop_name}})
+{{setter}}({{class_camel}} *self, {{prop_type}} {{prop_name}})
 {
 {{#is_boxed}}
 	g_return_if_fail(self != NULL);
@@ -499,7 +499,7 @@ void
  * Returns: Insert description here
  */
 {{prop_type}}
-{{getter}}({{class_camel}}* self)
+{{getter}}({{class_camel}} *self)
 {
 {{#is_boxed}}
 	g_return_val_if_fail(self != NULL, {{prop_assert_ret}});
