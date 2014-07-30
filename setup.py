@@ -17,8 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from distutils.core import setup
-from disthelpers import build, build_trans, build_man, install_data
+from setuptools import setup, find_packages
+from disthelpers import extract_messages, init_catalog, update_catalog
+from disthelpers import build, build_catalog, build_man
 from glob import glob
 from gobjectogen import __version__
 
@@ -32,20 +33,23 @@ setup(name='gobjectogen',
       license='GPLv3',
       url='https://github.com/elebihan/gobjectogen/',
       platforms=['Any'],
-      classifiers=('Programming Language :: Python :: 2',
+      classifiers=('Programming Language :: Python :: 3',
                    'Intended Audience :: Developers',
                    'Natural Language :: English'
                    'License :: OSI Approved :: GNU General Public License (GPL)',),
       keywords=['gobject', 'code generator'],
-      requires=['pystache (>=0.5)', 'docutils (>=0.11)'],
-      packages=['gobjectogen'],
+      install_requires=['pystache >= 0.5', 'docutils >=0.11'],
+      packages=find_packages(),
       scripts=glob('scripts/*'),
-      data_files=[('share/man/man1', glob('build/man/man1/*.1'))],
+      data_files=[],
+      include_package_data=True,
       author='Eric Le Bihan',
       author_email='eric.le.bihan.dev@free.fr',
-      cmdclass = {'build': build,
-                  'build_trans': build_trans,
-                  'build_man': build_man,
-                  'install_data': install_data})
+      cmdclass={'build': build,
+                'build_man': build_man,
+                'extract_messages': extract_messages,
+                'init_catalog': init_catalog,
+                'update_catalog': update_catalog,
+                'build_catalog': build_catalog})
 
 # vim: ts=4 sts=4 sw=4 sta et ai
