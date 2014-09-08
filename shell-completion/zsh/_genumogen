@@ -1,0 +1,8 @@
+#compdef genumogen
+
+_arguments -S -s \
+    '--version' \
+    '1: :_guard "^-*" name' \
+    '2:values'
+
+# vim: ts=4 sts=4 sw=4 et ai

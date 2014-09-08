@@ -1,0 +1,23 @@
+#compdef gobjectogen
+
+_arguments -S -s \
+    '--version' \
+   '(-o --output)'{-o,--output}'[set output directory]:directory:_directories' \
+   '(-N --namespace)'{-N,--namespace}'[set namespace]:name' \
+   '(-P --parent)'{-P,--parent}'[set parent class]:value' \
+   '(-I --implements)'{-I,--implements}'[set implemented interface]:interface' \
+   '(-A --abstract)'{-A,--abstract}'[generate an abstract class]' \
+   '(-B --boxed)'{-B,--boxed}'[generate a boxed type]' \
+   '(-F --interface)'{-F,--interface}'[generate an interface]' \
+   '(-E --error)'{-E,--error}'[add an error code]:name' \
+   '(-p --private)'{-p,--private}'[include structure to hold private members]' \
+   '(-d --dispose)'{-d,--dispose}'[include dispose method]' \
+   '(-f --finalize)'{-f,--finalize}'[include finalize method]' \
+   '(-s --propset)'{-s,--propset}'[include method to set properties]' \
+   '(-g --propget)'{-g,--propget}'[include method to get properties]' \
+   '(-a --author)'{-a,--author}'[set author of the program]:name' \
+   '(-t --description)'{-t,--description}'[set description of the program]:text' \
+   '(-l --license-file)'{-l,--license-file}'[set path to license file]:file:_files' \
+   '1: :_guard "^-*" name'
+
+# vim: ts=4 sts=4 sw=4 et ai

@@ -1,0 +1,12 @@
+#compdef gobjectaccessor
+
+_arguments -w -S -s \
+    '--version' \
+    '(-B --boxed)'{-B,--boxed}'[generate code for GBoxed instead of GObject]' \
+    '(-M --mode)'{-M,--mode}'[set generation mode]:value' \
+    '(-N --namespace)'{-N,--namespace}'[set namespace]:name' \
+    '1: :_guard "^-*" class' \
+    '2:property' \
+    '3:type'
+
+# vim: ts=4 sts=4 sw=4 et ai
