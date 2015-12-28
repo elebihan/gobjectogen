@@ -1,0 +1,4 @@
+gobjectogen/cli.py
+gobjectogen/templates.py
+gobjectogen/generators.py
+gobjectogen/utils.py
