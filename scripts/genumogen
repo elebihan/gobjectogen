@@ -20,23 +20,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import sys
-import os
 import argparse
 from gobjectogen import __version__
 from gobjectogen.generators import EnumGenerator
-
-import gettext
+from gobjectogen.utils import setup_i18n
 from gettext import gettext as _
 
-if hasattr(sys, 'frozen'):
-    ROOT_DIR = os.path.dirname(sys.executable)
-else:
-    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-LOCALE_DIR = os.path.join(ROOT_DIR, '..', 'share', 'locale')
-
-gettext.bindtextdomain('gobjectogen', LOCALE_DIR)
-gettext.textdomain('gobjectogen')
+setup_i18n()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
