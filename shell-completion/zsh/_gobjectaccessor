@@ -3,7 +3,7 @@
 _arguments -w -S -s \
     '--version' \
     '(-B --boxed)'{-B,--boxed}'[generate code for GBoxed instead of GObject]' \
-    '(-M --mode)'{-M,--mode}'[set generation mode]:value' \
+    '(-M --mode)'{-M,--mode}'[set generation mode]:mode:(code header)' \
     '(-N --namespace)'{-N,--namespace}'[set namespace]:name' \
     '1: :_guard "^-*" class' \
     '2:property' \
