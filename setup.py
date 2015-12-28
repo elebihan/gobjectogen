@@ -42,11 +42,17 @@ setup(name='gobjectogen',
       keywords=['gobject', 'code generator'],
       install_requires=['pystache >= 0.5', 'docutils >=0.11'],
       packages=find_packages(),
-      scripts=glob('scripts/*'),
       data_files=[
           ('share/zsh/site-functions', glob('shell-completion/zsh/_*')),
       ],
       include_package_data=True,
+      entry_points={
+          'console_scripts': [
+              'genumogen = gobjectogen.cli:genumogen',
+              'gobjectaccessor = gobjectogen.cli:gobjectaccessor',
+              'gobjectogen = gobjectogen.cli:gobjectogen',
+          ],
+      },
       author='Eric Le Bihan',
       author_email='eric.le.bihan.dev@free.fr',
       cmdclass={'build': build,
