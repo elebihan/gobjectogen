@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
-#
 # -*- coding: utf-8 -*-
 #
 # gobjectogen - GObject generator
 #
-# Copyright (c) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+# Copyright (c) 2015 Eric Le Bihan <eric.le.bihan.dev@free.fr>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,27 +18,92 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import sys
+"""
+   gobjectogen.cli
+   ```````````````
+
+   Provides command line interpeter helpers
+
+   :copyright: (C) 2015 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+   :license: GPLv3+
+"""
+
 import os
 import argparse
 from gobjectogen import __version__
-from gobjectogen.generators import (ClassGenerator,
-                                    InterfaceGenerator,
-                                    BoxedGenerator)
-from gobjectogen.generators import (CLASS_HAS_PRIVATE, CLASS_HAS_PROPGET,
-                                    CLASS_HAS_PROPSET, CLASS_HAS_DISPOSE,
-                                    CLASS_HAS_FINALIZE, CLASS_IS_ABSTRACT)
-import gettext
+from gobjectogen.generators import (
+    AccessorGenerator, EnumGenerator, ClassGenerator, InterfaceGenerator,
+    BoxedGenerator
+)
+from gobjectogen.generators import (
+    CLASS_HAS_PRIVATE, CLASS_HAS_PROPGET, CLASS_HAS_PROPSET,
+    CLASS_HAS_DISPOSE, CLASS_HAS_FINALIZE, CLASS_IS_ABSTRACT
+)
 from gettext import gettext as _
 
-if hasattr(sys, 'frozen'):
-    ROOT_DIR = os.path.dirname(sys.executable)
-else:
-    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-LOCALE_DIR = os.path.join(ROOT_DIR, '..', 'share', 'locale')
 
-gettext.bindtextdomain('gobjectogen', LOCALE_DIR)
-gettext.textdomain('gobjectogen')
+def genumogen():
+    """
+    Generate source code for a GLib enumeration, as well of its gtk-doc.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version',
+                        action='version',
+                        version=__version__)
+    parser.add_argument('name',
+                        metavar=_('NAME'),
+                        help=_('name of the GObject class (in CamelCase)'))
+    parser.add_argument('values',
+                        nargs='+',
+                        metavar=_('VALUE'),
+                        help=_('value of the enumeration'))
+
+    args = parser.parse_args()
+
+    gen = EnumGenerator(args.name, args.values)
+    gen.generate()
+
+
+def gobjectaccessor():
+    """
+    Generate source code for accessing a property of a GObject.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version',
+                        action='version',
+                        version=__version__)
+    parser.add_argument('class_name',
+                        metavar=_('CLASS'),
+                        help=_('name of the GObject class (in CamelCase)'))
+    parser.add_argument('prop_name',
+                        metavar=_('PROPERTY'),
+                        help=_('name of the property'))
+    parser.add_argument('prop_type',
+                        metavar=_('TYPE'),
+                        help=_('type of the property'))
+    parser.add_argument('-B', '--boxed',
+                        action='store_true',
+                        help=_('generate code for GBoxed instead of GObject'))
+    parser.add_argument('-M', '--mode',
+                        choices=['code', 'header'],
+                        default='code',
+                        help=_('set generation mode'))
+    parser.add_argument('-N', '--namespace',
+                        metavar=_('NAME'),
+                        help=_('set namespace'))
+
+    args = parser.parse_args()
+
+    modes = {
+        'code': AccessorGenerator.MODE_CODE,
+        'header': AccessorGenerator.MODE_HEADER,
+    }
+
+    gen = AccessorGenerator(args.class_name, args.prop_name, args.prop_type)
+    gen.namespace = args.namespace
+    gen.boxed = args.boxed
+    gen.generate(modes[args.mode])
+
 
 def configure_generator(gen, args):
     gen.parent = args.parent
@@ -66,7 +129,12 @@ def configure_generator(gen, args):
         with open(args.license_file) as f:
             gen.license = f.read()
 
-if __name__ == '__main__':
+
+def gobjectogen():
+    """
+    Generate source code for programs using the GObject type system, such as
+    classes and interfaces.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--version',
                         action='version',
