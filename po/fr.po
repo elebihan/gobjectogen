@@ -8,9 +8,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gobjectogen 0.1.0\n"
+"Project-Id-Version: gobjectogen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 12:04+0200\n"
+"POT-Creation-Date: 2015-12-29 13:12+0100\n"
 "PO-Revision-Date: 2014-05-21 13:16+0200\n"
 "Last-Translator: Eric Le Bihan <eric.le.bihan.dev@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,132 +19,131 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scripts/genumogen:44 scripts/gobjectaccessor:59 scripts/gobjectogen:72
-#: scripts/gobjectogen:79 scripts/gobjectogen:105 scripts/gobjectogen:128
+#: gobjectogen/cli.py:54 gobjectogen/cli.py:92 gobjectogen/cli.py:143
+#: gobjectogen/cli.py:150 gobjectogen/cli.py:176 gobjectogen/cli.py:199
 msgid "NAME"
 msgstr "NOM"
 
-#: scripts/genumogen:45 scripts/gobjectaccessor:44 scripts/gobjectogen:73
+#: gobjectogen/cli.py:55 gobjectogen/cli.py:77 gobjectogen/cli.py:144
 msgid "name of the GObject class (in CamelCase)"
 msgstr "nom de la class GObject (en CamelCase)"
 
-#: scripts/genumogen:48
+#: gobjectogen/cli.py:58
 msgid "VALUE"
 msgstr "VALEUR"
 
-#: scripts/genumogen:49
+#: gobjectogen/cli.py:59
 msgid "value of the enumeration"
 msgstr "valeur de l'énumération"
 
-#: scripts/gobjectaccessor:43
+#: gobjectogen/cli.py:76
 msgid "CLASS"
 msgstr "CLASSE"
 
-#: scripts/gobjectaccessor:46
+#: gobjectogen/cli.py:79
 msgid "PROPERTY"
 msgstr "PROPRIÉTÉ"
 
-#: scripts/gobjectaccessor:47
+#: gobjectogen/cli.py:80
 msgid "name of the property"
 msgstr "nom de la propriété"
 
-#: scripts/gobjectaccessor:49
+#: gobjectogen/cli.py:82
 msgid "TYPE"
 msgstr "TYPE"
 
-#: scripts/gobjectaccessor:50
+#: gobjectogen/cli.py:83
 msgid "type of the property"
 msgstr "type de la propriété"
 
-#: scripts/gobjectaccessor:53
+#: gobjectogen/cli.py:86
 msgid "generate code for GBoxed instead of GObject"
 msgstr "générer le code pour GBoxed au lieu de GObject"
 
-#: scripts/gobjectaccessor:57
+#: gobjectogen/cli.py:90
 msgid "set generation mode"
 msgstr "définir le mode de génération"
 
-#: scripts/gobjectaccessor:60 scripts/gobjectogen:80
+#: gobjectogen/cli.py:93 gobjectogen/cli.py:151
 msgid "set namespace"
 msgstr "définir l'espace de nommage"
 
-#: scripts/gobjectogen:75
+#: gobjectogen/cli.py:146
 msgid "DIRECTORY"
 msgstr "RÉPERTOIRE"
 
-#: scripts/gobjectogen:77
+#: gobjectogen/cli.py:148
 msgid "set output directory"
 msgstr "définir le répertoire de sortie"
 
-#: scripts/gobjectogen:82
+#: gobjectogen/cli.py:153
 msgid "set parent class"
 msgstr "définir la classe parente"
 
-#: scripts/gobjectogen:87
+#: gobjectogen/cli.py:158
 msgid "INTERFACE"
 msgstr "INTERFACE"
 
-#: scripts/gobjectogen:88
+#: gobjectogen/cli.py:159
 msgid "set implemented interface"
 msgstr "définir une interface implémentée"
 
-#: scripts/gobjectogen:92
+#: gobjectogen/cli.py:163
 msgid "generate an abstract class"
 msgstr "générer une classe abstraite"
 
-#: scripts/gobjectogen:96
+#: gobjectogen/cli.py:167
 msgid "generate a boxed type"
 msgstr "générer un type 'boxed'"
 
-#: scripts/gobjectogen:100
+#: gobjectogen/cli.py:171
 msgid "generate an interface"
 msgstr "générer une interface"
 
-#: scripts/gobjectogen:106
+#: gobjectogen/cli.py:177
 msgid "add an error code"
 msgstr "ajouter un code d'erreur"
 
-#: scripts/gobjectogen:110
+#: gobjectogen/cli.py:181
 msgid "include structure to hold private members"
 msgstr "inclure une structure pour les variables membres privées"
 
-#: scripts/gobjectogen:114
+#: gobjectogen/cli.py:185
 msgid "include dispose method"
 msgstr "inclure une méthode 'dispose'"
 
-#: scripts/gobjectogen:118
+#: gobjectogen/cli.py:189
 msgid "include finalize method"
 msgstr "inclure une méthode 'finalize'"
 
-#: scripts/gobjectogen:122
+#: gobjectogen/cli.py:193
 msgid "include method to set properties"
 msgstr "inclure une méthode pour affecter les propriétés"
 
-#: scripts/gobjectogen:126
+#: gobjectogen/cli.py:197
 msgid "include method to get properties"
 msgstr "inclure une méthode pour lire les propriétés"
 
-#: scripts/gobjectogen:130
+#: gobjectogen/cli.py:201
 msgid "set author of the program"
 msgstr "définir l'auteur du programme"
 
-#: scripts/gobjectogen:132
+#: gobjectogen/cli.py:203
 msgid "TEXT"
 msgstr "TEXTE"
 
-#: scripts/gobjectogen:134
+#: gobjectogen/cli.py:205
 msgid "set description of the program"
 msgstr "définir la description du programme"
 
-#: scripts/gobjectogen:136
+#: gobjectogen/cli.py:207
 msgid "FILE"
 msgstr "FICHIER"
 
-#: scripts/gobjectogen:137
+#: gobjectogen/cli.py:208
 msgid "set path to license file"
 msgstr "définir le chemin vers le fichier de licence"
 
-#: gobjectogen/generators.py:40
-#, python-format
-msgid "Wrote %s"
-msgstr "Écriture de %s"
+#: gobjectogen/generators.py:42
+msgid "Wrote {}"
+msgstr "Écriture de {}"
