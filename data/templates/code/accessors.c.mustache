@@ -1,0 +1,48 @@
+/**
+ * {{setter}}:
+ * @self: a #{{class_camel}}
+ * @{{prop_name}}: value to set
+ *
+ * Sets the value of {{prop_name}}
+ */
+void
+{{setter}}({{class_camel}} *self, {{prop_type}} {{prop_name}})
+{
+{{#is_boxed}}
+	g_return_if_fail(self != NULL);
+{{/is_boxed}}
+{{^is_boxed}}
+	g_return_if_fail({{ns_upper}}_IS_{{object_upper}}(self));
+{{/is_boxed}}
+	{{prop_assert}}
+
+{{#is_boxed}}
+	self->{{prop_name}} = {{prop_name}};
+{{/is_boxed}}
+{{^is_boxed}}
+	self->priv->{{prop_name}} = {{prop_name}};
+{{/is_boxed}}
+}
+
+/**
+ * {{getter}}:
+ * @self: a #{{class_camel}}
+ *
+ * Returns the value of {{prop_name}}
+ *
+ * Returns: Insert description here
+ */
+{{prop_type}}
+{{getter}}({{class_camel}} *self)
+{
+{{#is_boxed}}
+	g_return_val_if_fail(self != NULL, {{prop_assert_ret}});
+
+	return self->{{prop_name}};
+{{/is_boxed}}
+{{^is_boxed}}
+	g_return_val_if_fail({{ns_upper}}_IS_{{object_upper}}(self), {{prop_assert_ret}});
+
+	return self->priv->{{prop_name}};
+{{/is_boxed}}
+}

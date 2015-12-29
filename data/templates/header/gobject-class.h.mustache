@@ -1,0 +1,92 @@
+/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
+#ifndef {{header_guard}}
+#define {{header_guard}}
+
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
+#define {{ns_upper}}_TYPE_{{object_upper}} {{class_lower}}_get_type()
+
+#define {{ns_upper}}_{{object_upper}}(obj) \
+	(G_TYPE_CHECK_INSTANCE_CAST((obj), \
+	{{ns_upper}}_TYPE_{{object_upper}}, {{class_camel}}))
+
+#define {{ns_upper}}_{{object_upper}}_CLASS(klass) \
+	(G_TYPE_CHECK_CLASS_CAST((klass), \
+	{{ns_upper}}_TYPE_{{object_upper}}, {{class_camel}}Class))
+
+#define {{ns_upper}}_IS_{{object_upper}}(obj) \
+	(G_TYPE_CHECK_INSTANCE_TYPE((obj), \
+	{{ns_upper}}_TYPE_{{object_upper}}))
+
+#define {{ns_upper}}_IS_{{object_upper}}_CLASS(klass) \
+	(G_TYPE_CHECK_CLASS_TYPE((klass), \
+	{{ns_upper}}_TYPE_{{object_upper}}))
+
+#define {{ns_upper}}_{{object_upper}}_GET_CLASS(obj) \
+	(G_TYPE_INSTANCE_GET_CLASS((obj), \
+	{{ns_upper}}_TYPE_{{object_upper}}, {{class_camel}}Class))
+
+typedef struct _{{class_camel}} {{class_camel}};
+typedef struct _{{class_camel}}Class {{class_camel}}Class;
+{{#has_private}}
+typedef struct _{{class_camel}}Private {{class_camel}}Private;
+{{/has_private}}
+
+struct _{{class_camel}}
+{
+	/*< private >*/
+	{{parent_camel}} parent;
+
+	{{#has_private}}
+	{{class_camel}}Private *priv;
+	{{/has_private}}
+};
+
+struct _{{class_camel}}Class
+{
+	/*< private >*/
+	{{parent_camel}}Class parent_class;
+};
+
+GType {{class_lower}}_get_type(void) G_GNUC_CONST;
+
+{{^is_abstract}}
+{{class_camel}}* {{class_lower}}_new(void);
+{{/is_abstract}}
+
+{{#has_errors}}
+/**
+ * {{error_type}}:
+{{#errors}}
+ * @{{error}}:
+{{/errors}}
+ *
+ * Insert description of the error here
+ */
+typedef enum {
+{{#errors}}
+    {{error}},
+{{/errors}}
+} {{error_type}};
+
+/**
+ * {{class_upper}}_ERROR:
+ *
+ * Error domain for #{{class_camel}}
+ */
+#define {{class_upper}}_ERROR ({{class_lower}}_error_quark())
+GQuark {{class_lower}}_error_quark(void);
+{{/has_errors}}
+
+G_END_DECLS
+
+#endif /* {{header_guard}} */
