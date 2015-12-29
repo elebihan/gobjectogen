@@ -39,7 +39,7 @@ def split_class_name(klass_name):
 def write_file(filename, contents):
     with open(filename, 'w') as output:
         output.write(contents)
-    print(_("Wrote %s") % filename)
+    print(_("Wrote {}").format(filename))
 
 CLASS_HAS_PRIVATE = 1 << 0
 CLASS_HAS_PROPGET = 1 << 1
