@@ -18,6 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-__version__ = '0.1.1'
+__version__ = '0.1.3'
 
 # vim: ts=4 sw=4 sts=4 et ai
