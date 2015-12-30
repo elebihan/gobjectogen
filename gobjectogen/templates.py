@@ -18,6 +18,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+
+import os
+from .utils import get_data_dir
+
+
+def get_default_templates_dir():
+    """Returns the path to the default templates directory"""
+    return os.path.join(get_data_dir(), 'templates')
+
+
+def read_template(basename):
+    filename = os.path.join(get_default_templates_dir(), basename)
+    with open(filename) as f:
+        return f.read()
+
+
 TEMPLATE_CLASS_HEADER = """/*
  * {{description}}
  *
@@ -529,4 +545,3 @@ typedef enum {
 	{{value}},
 {{/enum_values}}
 } {{enum_name}};'''
-
