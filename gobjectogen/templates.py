@@ -34,3 +34,5 @@ def read_template(basename):
         return f.read()
 
 TEMPLATE_IFACE_DECL = "G _IMPLEMENT_INTERFACE(%(iface_ns_upper)s_TYPE_%(iface_name_upper)s, %(iface_lower)s_iface_init)"
+
+# vim: ts=4 sw=4 sts=4 et ai
