@@ -69,8 +69,8 @@ class ClassGenerator:
     def __init__(self, name):
         self._klass_name = name
         self._values = {}
-        self._header = templates.TEMPLATE_CLASS_HEADER
-        self._code = templates.TEMPLATE_CLASS_CODE
+        self._header = os.path.join('header', 'gobject-class.h.mustache')
+        self._code = os.path.join('code', 'gobject-class.c.mustache')
 
     def generate(self, directory):
         if not os.path.exists(directory):
@@ -152,12 +152,14 @@ class ClassGenerator:
             self._values.update(values)
 
     def generate_header(self, directory):
+        template = templates.read_template(self._header)
         filename = os.path.join(directory, self._values['filename']) + '.h'
-        self._render_template(self._header, filename)
+        self._render_template(template, filename)
 
     def generate_code(self, directory):
+        template = templates.read_template(self._code)
         filename = os.path.join(directory, self._values['filename']) + '.c'
-        self._render_template(self._code, filename)
+        self._render_template(template, filename)
 
     def _render_template(self, text, filename):
         renderer = pystache.Renderer(escape=lambda u: u)
@@ -174,8 +176,8 @@ class InterfaceGenerator(ClassGenerator):
     '''
     def __init__(self, name):
         ClassGenerator.__init__(self, name)
-        self._header = templates.TEMPLATE_IFACE_HEADER
-        self._code = templates.TEMPLATE_IFACE_CODE
+        self._header = os.path.join('header', 'gobject-interface.h.mustache')
+        self._code = os.path.join('code', 'gobject-interface.c.mustache')
 
     def update_values(self):
         ClassGenerator.update_values(self)
@@ -193,8 +195,8 @@ class BoxedGenerator(ClassGenerator):
     '''
     def __init__(self, name):
         ClassGenerator.__init__(self, name)
-        self._header = templates.TEMPLATE_BOXED_HEADER
-        self._code = templates.TEMPLATE_BOXED_CODE
+        self._header = os.path.join('header', 'gboxed.h.mustache')
+        self._code = os.path.join('code', 'gboxed.c.mustache')
 
     def update_values(self):
         ClassGenerator.update_values(self)
@@ -271,10 +273,11 @@ class AccessorGenerator:
         self._values.update(values)
 
         if mode == AccessorGenerator.MODE_HEADER:
-            text = templates.TEMPLATE_ACCESSORS_HEADER
+            filename = os.path.join('header', 'accessors.h.mustache')
         else:
-            text = templates.TEMPLATE_ACCESSORS_CODE
+            filename = os.path.join('code', 'accessors.c.mustache')
 
+        text = templates.read_template(filename)
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, self._values)
         print(contents)
@@ -303,7 +306,8 @@ class EnumGenerator:
             'enum_name': self._enum_name,
             'enum_values': enum_values,
         }
-        text = templates.TEMPLATE_ENUMS_HEADER
+        filename = os.path.join('header', 'genum.h.mustache')
+        text = templates.read_template(filename)
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, values)
         print(contents)

@@ -1,0 +1,13 @@
+/**
+ * {{enum_name}}:
+{{#enum_values}}
+ * @{{value}}:
+{{/enum_values}}
+ *
+ * Insert description of the enumeration here
+ */
+typedef enum {
+{{#enum_values}}
+	{{value}},
+{{/enum_values}}
+} {{enum_name}};

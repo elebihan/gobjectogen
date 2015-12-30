@@ -24,6 +24,18 @@ from disthelpers import extract_messages, init_catalog, update_catalog
 from disthelpers import build, build_catalog, build_man, build_html
 from glob import glob
 from gobjectogen import __version__
+import fnmatch
+import os
+
+
+def collect_data_files(dst_dir, src_dir):
+    data_files = []
+    for root, directory, filenames in os.walk(src_dir):
+        for filename in fnmatch.filter(filenames, '*.mustache'):
+            src = os.path.join(root, filename)
+            dst = root.replace(src_dir, dst_dir)
+            data_files.append((dst, [src]))
+    return data_files
 
 setup(name='gobjectogen',
       version=__version__,
@@ -44,7 +56,7 @@ setup(name='gobjectogen',
       packages=find_packages(),
       data_files=[
           ('share/zsh/site-functions', glob('shell-completion/zsh/_*')),
-      ],
+      ] + collect_data_files('share/gobjectogen', 'data'),
       include_package_data=True,
       entry_points={
           'console_scripts': [

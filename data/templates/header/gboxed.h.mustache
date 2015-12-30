@@ -1,0 +1,37 @@
+/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
+#ifndef {{header_guard}}
+#define {{header_guard}}
+
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
+typedef struct _{{boxed_camel}} {{boxed_camel}};
+
+/**
+ * {{boxed_camel}}:
+ *
+ * Insert documentation here
+ */
+
+struct _{{boxed_camel}} {
+    gint dummy; /* Replace this dummy member */
+};
+
+#define {{ns_upper}}_TYPE_{{object_upper}} {{boxed_lower}}_get_type()
+
+GType {{boxed_lower}}_get_type(void) G_GNUC_CONST;
+{{boxed_camel}}* {{boxed_lower}}_new(void);
+{{boxed_camel}}* {{boxed_lower}}_copy(const {{boxed_camel}} *self);
+void {{boxed_lower}}_free({{boxed_camel}}* self);
+
+G_END_DECLS
+
+#endif /* {{header_guard}} */
