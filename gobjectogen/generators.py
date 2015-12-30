@@ -25,16 +25,20 @@ from . import templates
 from gettext import gettext as _
 from datetime import datetime
 
+
 def camel_to_upper(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
     return '_'.join([x.upper() for x in crumbs])
+
 
 def camel_to_lower(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
     return '_'.join([x.lower() for x in crumbs])
 
+
 def split_class_name(klass_name):
     return re.split(r'(^[A-Z][^A-Z]*)', klass_name, 1)[1:]
+
 
 def write_file(filename, contents):
     with open(filename, 'w') as output:
@@ -47,6 +51,7 @@ CLASS_HAS_PROPSET = 1 << 2
 CLASS_HAS_DISPOSE = 1 << 3
 CLASS_HAS_FINALIZE = 1 << 4
 CLASS_IS_ABSTRACT = 1 << 5
+
 
 class ClassGenerator:
     '''Generates source code for objects.
@@ -166,6 +171,7 @@ class ClassGenerator:
         contents = renderer.render(text, self._values)
         write_file(filename, contents)
 
+
 class InterfaceGenerator(ClassGenerator):
     '''Generates source code for interfaces.
 
@@ -185,6 +191,7 @@ class InterfaceGenerator(ClassGenerator):
         self._values['iface_lower'] = self._values['class_lower']
         self._values['iface_upper'] = self._values['object_upper']
 
+
 class BoxedGenerator(ClassGenerator):
     '''Generates source code for boxed types.
 
@@ -203,6 +210,7 @@ class BoxedGenerator(ClassGenerator):
         self._values['boxed_camel'] = self._values['class_camel']
         self._values['boxed_lower'] = self._values['class_lower']
         self._values['boxed_upper'] = self._values['object_upper']
+
 
 class AccessorGenerator:
     '''Generates source code for accessing a property of a GObject.
@@ -281,6 +289,7 @@ class AccessorGenerator:
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, self._values)
         print(contents)
+
 
 class EnumGenerator:
     '''Generates source code for a GLib enumeration.
