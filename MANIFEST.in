@@ -1,6 +1,6 @@
 include AUTHORS
 include COPYING
-include HACKING
+include HACKING.rst
 include README.rst
 include disthelpers.py
 include po/LINGUAS
