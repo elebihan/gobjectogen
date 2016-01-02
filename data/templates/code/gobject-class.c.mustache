@@ -1,0 +1,170 @@
+/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
+#include "{{filename}}.h"
+
+/**
+ * SECTION:{{filename}}
+ * @short_description:
+ * @title: {{class_camel}}
+ *
+ * Insert documentation here.
+ */
+
+{{#has_errors}}
+GQuark
+{{class_lower}}_error_quark(void)
+{
+	static GQuark error_quark = 0;
+	if (error_quark == 0) {
+		error_quark = g_quark_from_static_string("{{filename}}");
+	}
+	return error_quark;
+}
+{{/has_errors}}
+
+{{#ifaces}}
+static void {{iface_lower}}_iface_init({{iface_camel}}Iface *iface);
+{{/ifaces}}
+
+/**
+ * {{class_camel}}:
+ *
+ * Insert documentation here.
+ */
+{{^is_abstract}}
+{{#implements_iface}}
+G_DEFINE_TYPE_WITH_CODE({{class_camel}},
+			{{class_lower}},
+			{{parent_ns_upper}}_TYPE_{{parent_object_upper}},
+			{{implemented_ifaces}})
+{{/implements_iface}}
+{{^implements_iface}}
+G_DEFINE_TYPE({{class_camel}},
+	      {{class_lower}},
+	      {{parent_ns_upper}}_TYPE_{{parent_object_upper}})
+{{/implements_iface}}
+{{/is_abstract}}
+{{#is_abstract}}
+{{#implements_iface}}
+G_DEFINE_ABSTRACT_TYPE_WITH_CODE({{class_camel}},
+				 {{class_lower}},
+				 {{parent_ns_upper}}_TYPE_{{parent_object_upper}},
+				 {{implemented_ifaces}})
+{{/implements_iface}}
+{{^implements_iface}}
+G_DEFINE_ABSTRACT_TYPE({{class_camel}},
+		       {{class_lower}},
+		       {{parent_ns_upper}}_TYPE_{{parent_object_upper}})
+{{/implements_iface}}
+{{/is_abstract}}
+
+{{#has_private}}
+#define {{object_upper}}_PRIVATE(o) \\
+	(G_TYPE_INSTANCE_GET_PRIVATE((o), {{ns_upper}}_TYPE_{{object_upper}}, {{class_camel}}Private))
+
+struct _{{class_camel}}Private
+{
+	void* __dummy;
+};
+{{/has_private}}
+
+{{#ifaces}}
+static void
+{{iface_lower}}_iface_init({{iface_camel}}Iface *iface)
+{
+}
+{{/ifaces}}
+
+{{#has_propset}}
+static void
+{{class_lower}}_set_property(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+{
+	switch (property_id) {
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
+		break;
+    }
+}
+{{/has_propset}}
+
+{{#has_propget}}
+static void
+{{class_lower}}_get_property(GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
+{
+	switch (property_id) {
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
+		break;
+    }
+}
+{{/has_propget}}
+
+{{#has_dispose}}
+static void
+{{class_lower}}_dispose(GObject *object)
+{
+	G_OBJECT_CLASS({{class_lower}}_parent_class)->dispose(object);
+}
+{{/has_dispose}}
+
+{{#has_finalize}}
+static void
+{{class_lower}}_finalize(GObject *object)
+{
+	G_OBJECT_CLASS({{class_lower}}_parent_class)->finalize(object);
+}
+{{/has_finalize}}
+
+{{#has_class_init}}
+static void
+{{class_lower}}_class_init({{class_camel}}Class *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+
+	{{#has_private}}
+	g_type_class_add_private(klass, sizeof({{class_camel}}Private));
+	{{/has_private}}
+
+	{{#has_propset}}
+	object_class->set_property = {{class_lower}}_set_property;
+	{{/has_propset}}
+	{{#has_propget}}
+	object_class->get_property = {{class_lower}}_get_property;
+	{{/has_propget}}
+	{{#has_dispose}}
+	object_class->dispose = {{class_lower}}_dispose;
+	{{/has_dispose}}
+	{{#has_finalize}}
+	object_class->finalize = {{class_lower}}_finalize;
+	{{/has_finalize}}
+}
+{{/has_class_init}}
+
+static void
+{{class_lower}}_init({{class_camel}} *self)
+{
+	{{#has_private}}
+	self->priv = {{object_upper}}_PRIVATE(self);
+	{{/has_private}}
+}
+
+{{^is_abstract}}
+/**
+ * {{class_lower}}_new:
+ *
+ * Creates a new #{{class_camel}}.
+ *
+ * Returns: the newly created #{{class_camel}}.
+ */
+{{class_camel}}*
+{{class_lower}}_new(void)
+{
+	return g_object_new({{ns_upper}}_TYPE_{{object_upper}}, NULL);
+}
+{{/is_abstract}}

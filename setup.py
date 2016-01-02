@@ -21,9 +21,21 @@
 
 from setuptools import setup, find_packages
 from disthelpers import extract_messages, init_catalog, update_catalog
-from disthelpers import build, build_catalog, build_man
+from disthelpers import build, build_catalog, build_man, build_html
 from glob import glob
 from gobjectogen import __version__
+import fnmatch
+import os
+
+
+def collect_data_files(dst_dir, src_dir):
+    data_files = []
+    for root, directory, filenames in os.walk(src_dir):
+        for filename in fnmatch.filter(filenames, '*.mustache'):
+            src = os.path.join(root, filename)
+            dst = root.replace(src_dir, dst_dir)
+            data_files.append((dst, [src]))
+    return data_files
 
 setup(name='gobjectogen',
       version=__version__,
@@ -42,15 +54,22 @@ setup(name='gobjectogen',
       keywords=['gobject', 'code generator'],
       install_requires=['pystache >= 0.5', 'docutils >=0.11'],
       packages=find_packages(),
-      scripts=glob('scripts/*'),
       data_files=[
           ('share/zsh/site-functions', glob('shell-completion/zsh/_*')),
-      ],
+      ] + collect_data_files('share/gobjectogen', 'data'),
       include_package_data=True,
+      entry_points={
+          'console_scripts': [
+              'genumogen = gobjectogen.cli:genumogen',
+              'gobjectaccessor = gobjectogen.cli:gobjectaccessor',
+              'gobjectogen = gobjectogen.cli:gobjectogen',
+          ],
+      },
       author='Eric Le Bihan',
       author_email='eric.le.bihan.dev@free.fr',
       cmdclass={'build': build,
                 'build_man': build_man,
+                'build_html': build_html,
                 'extract_messages': extract_messages,
                 'init_catalog': init_catalog,
                 'update_catalog': update_catalog,

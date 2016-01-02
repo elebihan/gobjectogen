@@ -1,8 +1,11 @@
 include AUTHORS
 include COPYING
-include HACKING
+include HACKING.rst
+include NEWS.rst
 include README.rst
 include disthelpers.py
+include po/LINGUAS
+include po/POTFILES.in
 recursive-include man *
 recursive-include po *.po
 recursive-include shell-completion/zsh _*

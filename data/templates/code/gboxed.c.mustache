@@ -1,0 +1,69 @@
+/*
+ * {{description}}
+ *
+ * Copyright (C) {{year}} {{author}}
+ *
+{{license}}
+ */
+
+#include "{{filename}}.h"
+
+/**
+ * SECTION:{{filename}}
+ * @short_description:
+ * @title: {{boxed_camel}}
+ *
+ * Insert documentation here.
+ */
+G_DEFINE_BOXED_TYPE({{boxed_camel}}, {{boxed_lower}}, (GBoxedCopyFunc){{boxed_lower}}_copy, (GBoxedFreeFunc){{boxed_lower}}_free)
+
+/**
+ * {{boxed_lower}}_copy:
+ * @self: a #{{boxed_camel}}
+ *
+ * Creates a copy of a given #{{boxed_camel}}.
+ *
+ * Returns: a copy of @self
+ */
+{{boxed_camel}}*
+{{boxed_lower}}_copy(const {{boxed_camel}} *self)
+{
+	{{boxed_camel}} *copy  = NULL;
+	g_return_val_if_fail(self != NULL, NULL);
+
+	copy = g_slice_new0({{boxed_camel}});
+	if (!copy) return NULL;
+
+	/* Replace this stuff */
+	copy->dummy = self->dummy;
+
+	return copy;
+}
+
+/**
+ * {{boxed_lower}}_free:
+ * @self: a #{{boxed_camel}}
+ *
+ * Destroys a given #{{boxed_camel}}.
+ *
+ */
+void
+{{boxed_lower}}_free({{boxed_camel}} *self)
+{
+	g_return_if_fail(self != NULL);
+
+	g_slice_free({{boxed_camel}}, self);
+}
+
+/**
+ * {{boxed_lower}}_new:
+ *
+ * Creates a new empty #{{boxed_camel}}
+ *
+ * Returns: a newly allocated #{{boxed_camel}}.
+ */
+{{boxed_camel}}*
+{{boxed_lower}}_new(void)
+{
+	return g_slice_new0({{boxed_camel}});
+}

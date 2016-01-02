@@ -18,6 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-__version__ = '0.1.1'
+"""
+   gobjectogen
+   ```````````
+
+   GObject C header/source code generation
+
+   :copyright: (C) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+   :license: GPLv3+
+"""
+
+__version__ = '0.2.0'
 
 # vim: ts=4 sw=4 sts=4 et ai

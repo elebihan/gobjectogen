@@ -18,6 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+"""
+   gobjectogen.generators
+   ``````````````````````
+
+   GObject C header/source code generators
+
+   :copyright: (C) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+   :license: GPLv3+
+"""
+
 import os
 import re
 import pystache
@@ -25,21 +35,25 @@ from . import templates
 from gettext import gettext as _
 from datetime import datetime
 
+
 def camel_to_upper(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
     return '_'.join([x.upper() for x in crumbs])
+
 
 def camel_to_lower(string):
     crumbs = re.findall(r'[A-Z][^A-Z]*', string)
     return '_'.join([x.lower() for x in crumbs])
 
+
 def split_class_name(klass_name):
     return re.split(r'(^[A-Z][^A-Z]*)', klass_name, 1)[1:]
+
 
 def write_file(filename, contents):
     with open(filename, 'w') as output:
         output.write(contents)
-    print(_("Wrote %s") % filename)
+    print(_("Wrote {}").format(filename))
 
 CLASS_HAS_PRIVATE = 1 << 0
 CLASS_HAS_PROPGET = 1 << 1
@@ -47,6 +61,7 @@ CLASS_HAS_PROPSET = 1 << 2
 CLASS_HAS_DISPOSE = 1 << 3
 CLASS_HAS_FINALIZE = 1 << 4
 CLASS_IS_ABSTRACT = 1 << 5
+
 
 class ClassGenerator:
     '''Generates source code for objects.
@@ -69,8 +84,8 @@ class ClassGenerator:
     def __init__(self, name):
         self._klass_name = name
         self._values = {}
-        self._header = templates.TEMPLATE_CLASS_HEADER
-        self._code = templates.TEMPLATE_CLASS_CODE
+        self._header = os.path.join('header', 'gobject-class.h.mustache')
+        self._code = os.path.join('code', 'gobject-class.c.mustache')
 
     def generate(self, directory):
         if not os.path.exists(directory):
@@ -152,17 +167,20 @@ class ClassGenerator:
             self._values.update(values)
 
     def generate_header(self, directory):
+        template = templates.read_template(self._header)
         filename = os.path.join(directory, self._values['filename']) + '.h'
-        self._render_template(self._header, filename)
+        self._render_template(template, filename)
 
     def generate_code(self, directory):
+        template = templates.read_template(self._code)
         filename = os.path.join(directory, self._values['filename']) + '.c'
-        self._render_template(self._code, filename)
+        self._render_template(template, filename)
 
     def _render_template(self, text, filename):
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, self._values)
         write_file(filename, contents)
+
 
 class InterfaceGenerator(ClassGenerator):
     '''Generates source code for interfaces.
@@ -174,14 +192,15 @@ class InterfaceGenerator(ClassGenerator):
     '''
     def __init__(self, name):
         ClassGenerator.__init__(self, name)
-        self._header = templates.TEMPLATE_IFACE_HEADER
-        self._code = templates.TEMPLATE_IFACE_CODE
+        self._header = os.path.join('header', 'gobject-interface.h.mustache')
+        self._code = os.path.join('code', 'gobject-interface.c.mustache')
 
     def update_values(self):
         ClassGenerator.update_values(self)
         self._values['iface_camel'] = self._values['class_camel']
         self._values['iface_lower'] = self._values['class_lower']
         self._values['iface_upper'] = self._values['object_upper']
+
 
 class BoxedGenerator(ClassGenerator):
     '''Generates source code for boxed types.
@@ -193,14 +212,15 @@ class BoxedGenerator(ClassGenerator):
     '''
     def __init__(self, name):
         ClassGenerator.__init__(self, name)
-        self._header = templates.TEMPLATE_BOXED_HEADER
-        self._code = templates.TEMPLATE_BOXED_CODE
+        self._header = os.path.join('header', 'gboxed.h.mustache')
+        self._code = os.path.join('code', 'gboxed.c.mustache')
 
     def update_values(self):
         ClassGenerator.update_values(self)
         self._values['boxed_camel'] = self._values['class_camel']
         self._values['boxed_lower'] = self._values['class_lower']
         self._values['boxed_upper'] = self._values['object_upper']
+
 
 class AccessorGenerator:
     '''Generates source code for accessing a property of a GObject.
@@ -271,13 +291,15 @@ class AccessorGenerator:
         self._values.update(values)
 
         if mode == AccessorGenerator.MODE_HEADER:
-            text = templates.TEMPLATE_ACCESSORS_HEADER
+            filename = os.path.join('header', 'accessors.h.mustache')
         else:
-            text = templates.TEMPLATE_ACCESSORS_CODE
+            filename = os.path.join('code', 'accessors.c.mustache')
 
+        text = templates.read_template(filename)
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, self._values)
         print(contents)
+
 
 class EnumGenerator:
     '''Generates source code for a GLib enumeration.
@@ -303,7 +325,8 @@ class EnumGenerator:
             'enum_name': self._enum_name,
             'enum_values': enum_values,
         }
-        text = templates.TEMPLATE_ENUMS_HEADER
+        filename = os.path.join('header', 'genum.h.mustache')
+        text = templates.read_template(filename)
         renderer = pystache.Renderer(escape=lambda u: u)
         contents = renderer.render(text, values)
         print(contents)
