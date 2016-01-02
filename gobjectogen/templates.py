@@ -18,17 +18,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+"""
+   gobjectogen.templates
+   `````````````````````
+
+   GObject C header/source code templates management
+
+   :copyright: (C) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+   :license: GPLv3+
+"""
 
 import os
 from .utils import get_data_dir
 
 
 def get_default_templates_dir():
-    """Returns the path to the default templates directory"""
+    """Return the path to the default templates directory"""
     return os.path.join(get_data_dir(), 'templates')
 
 
 def read_template(basename):
+    """Read contents of a template file from default directory.
+
+    :param basename: name of the template file
+    :type basename: string
+
+    :return: the contents of the template file
+    :rtype: str
+    """
     filename = os.path.join(get_default_templates_dir(), basename)
     with open(filename) as f:
         return f.read()

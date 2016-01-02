@@ -18,6 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+"""
+   gobjectogen.generators
+   ``````````````````````
+
+   GObject C header/source code generators
+
+   :copyright: (C) 2013 Eric Le Bihan <eric.le.bihan.dev@free.fr>
+   :license: GPLv3+
+"""
+
 import os
 import re
 import pystache
