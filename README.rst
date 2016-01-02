@@ -1,3 +1,4 @@
+===========================================
 gobjectogen - GObject Source Code Generator
 ===========================================
 
@@ -17,7 +18,9 @@ The generated code is not fully indented, so it is better to use `astyle` (>=
   --align-pointer=name \
   --indent-preprocessor
 
-Another tool is available for generating source/header code for accessing a
-property of an object: `gobjectaccessor`.
+Additional tools are available:
 
-.. vim: ft=rst
+- `gobjectaccessor` generates source/header code for accessing a property of an
+  object.
+- `genumogen` generates source code for a GLib enumeration, as well of its
+  gtk-doc.
